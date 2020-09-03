@@ -1,15 +1,35 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Car Detail</title>
-</head>
-<body>
-		<h1>
-			{{car.make}} - {{car.model}}
-			<small>
-				{{car.year}}
-			</small>
-		</h1>
-		<hr>
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block title %}Car Detail{% endblock title %}
+
+{% block content %}
+<style>
+
+body  {
+  background:linear-gradient(0deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(https://stimg.cardekho.com/images/carexteriorimages/630x420/Bugatti/Bugatti-Chiron/6524/1550828170128/front-left-side-47.jpg) no-repeat fixed;
+  background-position: center;
+  background-size: cover;
+  position: relative;
+}
+
+</style>
+<div class="media m-1" >
+  {% if car.img %}
+   <img class="card-img" src="{{car.img.url}}" style="height : 300px; width: 500px" alt="Card image cap">
+{% endif %}
+<div class="media-body m-3">
+        <h3 class="mt-0" style="color: white">{{car.make}}</h3>
+        <p style="color: white">{{car.model}}</p>
+        <p class="mb-0" style="color: white">{{car.year}}</p>
+        <br>
+        <div class="mt-5">
+          <a href="{% url 'car-update' car.id %}">
+              <button class="btn btn-success mt-5">Update</button>
+          </a>
+          <a href="{% url 'car-delete' car.id %}">
+              <button class="btn btn-danger mt-5">Delete</button>
+          </a>
+        </div>
+      </div>
+      </div>
+{% endblock content %}
